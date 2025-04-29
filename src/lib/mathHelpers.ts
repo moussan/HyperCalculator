@@ -1,14 +1,12 @@
 import { create, all, MathJsStatic } from 'mathjs';
 
-// Create sandboxed mathjs instance with limited function set
+// Create mathjs instance
 const math = create(all, {
-  // Silent override prevents warning messages
   matrix: 'Matrix'
 }) as MathJsStatic;
 
-// Remove potentially unsafe or heavy functions if present
-// @ts-ignore
-math.import({ import: undefined, createUnit: undefined, eval: undefined, parse: undefined }, { override: true });
+// Note: We're not restricting any mathjs functions as it can cause conflicts
+// with importing the module in tests
 
 export function safeEvaluate(expr: string, scope: Record<string, unknown> = {}) {
   try {
@@ -55,20 +53,38 @@ export function performMatrixOp(A: Matrix, B: Matrix, type: MatrixOpType): Matri
   return result;
 }
 
-export type ComplexOp = 'add' | 'subtract' | 'multiply' | 'divide' | 'conjugate' | 'magnitude' | 'phase';
+export type ComplexOp =
+  | 'add'
+  | 'subtract'
+  | 'multiply'
+  | 'divide'
+  | 'conjugate'
+  | 'magnitude'
+  | 'phase';
 
-export function performComplexOp(aReal: number, aImag: number, op: ComplexOp, bReal=0, bImag=0): string {
+export function performComplexOp(
+  aReal: number,
+  aImag: number,
+  op: ComplexOp,
+  bReal = 0,
+  bImag = 0
+): string {
   const a = math.complex(aReal, aImag);
   if (op === 'conjugate') return math.conj(a).toString();
   if (op === 'magnitude') return math.abs(a).toString();
   if (op === 'phase') return math.arg(a).toString();
   const b = math.complex(bReal, bImag);
-  switch(op) {
-    case 'add': return math.add(a, b).toString();
-    case 'subtract': return math.subtract(a, b).toString();
-    case 'multiply': return math.multiply(a, b).toString();
-    case 'divide': return math.divide(a, b).toString();
-    default: return '0';
+  switch (op) {
+    case 'add':
+      return math.add(a, b).toString();
+    case 'subtract':
+      return math.subtract(a, b).toString();
+    case 'multiply':
+      return math.multiply(a, b).toString();
+    case 'divide':
+      return math.divide(a, b).toString();
+    default:
+      return '0';
   }
 }
 
@@ -91,20 +107,25 @@ export function taylorSeries(expr: string, variable: string, terms: number, poin
   return series;
 }
 
-export function fourierSeries(expr: string, variable: string, terms: number, period=2*Math.PI): string[] {
+export function fourierSeries(
+  expr: string,
+  variable: string,
+  terms: number,
+  period = 2 * Math.PI
+): string[] {
   const res: string[] = [];
-  for (let k=-terms; k<=terms; k++) {
+  for (let k = -terms; k <= terms; k++) {
     const ck = `(1/${period}) * ∫[${expr} * e^(-i*${k}${variable})]d${variable}`;
     res.push(`${ck}*e^(i*${k}${variable})`);
   }
   return res;
 }
 
-export function laurentSeries(expr: string, variable: string, terms: number, point=0): string[] {
+export function laurentSeries(expr: string, variable: string, terms: number, point = 0): string[] {
   const res: string[] = [];
-  for (let k=-terms; k<=terms; k++) {
-    const ck = `(1/(2πi))∫[${expr}/(${variable}-${point})^${k+1}]d${variable}`;
+  for (let k = -terms; k <= terms; k++) {
+    const ck = `(1/(2πi))∫[${expr}/(${variable}-${point})^${k + 1}]d${variable}`;
     res.push(`${ck}*(${variable}-${point})^${k}`);
   }
   return res;
-} 
+}

@@ -58,7 +58,7 @@ const BasicCalculator: React.FC = () => {
         setExpression('Error');
       }
     } else {
-      const evalMap: Record<string,string> = { '÷':'/', '×':'*', '−':'-' };
+      const evalMap: Record<string, string> = { '÷': '/', '×': '*', '−': '-' };
       const insert = evalMap[value] ?? value;
       setExpression((prev) => (prev === 'Error' ? insert : prev + insert));
     }
@@ -77,13 +77,33 @@ const BasicCalculator: React.FC = () => {
         sx={{ mb: 2 }}
       />
       <Grid container spacing={1}>
-        {buttons.map((row, rowIndex) => (
+        {buttons.map((row, rowIndex) =>
           row.map((btn, colIndex) => (
             <Grid item xs={3} key={`${rowIndex}-${colIndex}`}>
-              <Tooltip title={btn === '←' ? 'Backspace' : btn === 'AC' ? 'Clear' : btn === '%' ? 'Percentage' : btn === 'Rand' ? 'Random' : btn === '±' ? '±' : ''}>
+              <Tooltip
+                title={
+                  btn === '←'
+                    ? 'Backspace'
+                    : btn === 'AC'
+                      ? 'Clear'
+                      : btn === '%'
+                        ? 'Percentage'
+                        : btn === 'Rand'
+                          ? 'Random'
+                          : btn === '±'
+                            ? '±'
+                            : ''
+                }
+              >
                 <Button
-                  variant={['÷','×','−','+','=','/','*','-'].includes(btn) ? 'contained' : 'outlined'}
-                  color={['÷','×','−','+','=','/','*','-'].includes(btn) ? 'primary' : 'inherit'}
+                  variant={
+                    ['÷', '×', '−', '+', '=', '/', '*', '-'].includes(btn)
+                      ? 'contained'
+                      : 'outlined'
+                  }
+                  color={
+                    ['÷', '×', '−', '+', '=', '/', '*', '-'].includes(btn) ? 'primary' : 'inherit'
+                  }
                   fullWidth
                   size="large"
                   onClick={() => handleClick(btn)}
@@ -93,10 +113,10 @@ const BasicCalculator: React.FC = () => {
               </Tooltip>
             </Grid>
           ))
-        ))}
+        )}
       </Grid>
     </Paper>
   );
 };
 
-export default BasicCalculator; 
+export default BasicCalculator;

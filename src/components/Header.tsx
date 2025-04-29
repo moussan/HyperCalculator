@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ themeName, onThemeChange }) => {
             color: 'inherit',
             '.MuiOutlinedInput-notchedOutline': { borderColor: 'inherit' },
             '.MuiSvgIcon-root': { color: 'inherit' },
-            bgcolor: 'rgba(255,255,255,0.1)'
+            bgcolor: 'rgba(255,255,255,0.1)',
           }}
         >
           <MenuItem value="dark">Dark</MenuItem>
@@ -35,4 +35,4 @@ const Header: React.FC<HeaderProps> = ({ themeName, onThemeChange }) => {
   );
 };
 
-export default Header; 
+export default Header;

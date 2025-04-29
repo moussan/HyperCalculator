@@ -8,7 +8,7 @@ import {
   Checkbox,
   Typography,
   Button,
-  Box
+  Box,
 } from '@mui/material';
 import { create, all, MathJsStatic } from 'mathjs';
 
@@ -97,7 +97,9 @@ const VectorCalculator: React.FC = () => {
 
   return (
     <Paper elevation={2} sx={{ p: 2, maxWidth: 700, mx: 'auto' }}>
-      <Typography variant="h6" gutterBottom>Vector Field Visualizer</Typography>
+      <Typography variant="h6" gutterBottom>
+        Vector Field Visualizer
+      </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -122,9 +124,7 @@ const VectorCalculator: React.FC = () => {
             max={40}
             step={1}
             value={config.density}
-            onChange={(_, val) =>
-              setConfig((c) => ({ ...c, density: val as number }))
-            }
+            onChange={(_, val) => setConfig((c) => ({ ...c, density: val as number }))}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -134,9 +134,7 @@ const VectorCalculator: React.FC = () => {
             max={5}
             step={0.1}
             value={config.scale}
-            onChange={(_, val) =>
-              setConfig((c) => ({ ...c, scale: val as number }))
-            }
+            onChange={(_, val) => setConfig((c) => ({ ...c, scale: val as number }))}
           />
         </Grid>
         <Grid item xs={12}>
@@ -144,9 +142,7 @@ const VectorCalculator: React.FC = () => {
             control={
               <Checkbox
                 checked={config.showStreamlines}
-                onChange={(_, checked) =>
-                  setConfig((c) => ({ ...c, showStreamlines: checked }))
-                }
+                onChange={(_, checked) => setConfig((c) => ({ ...c, showStreamlines: checked }))}
               />
             }
             label="Show streamlines"
@@ -164,10 +160,12 @@ const VectorCalculator: React.FC = () => {
         </Grid>
       </Grid>
       <Box sx={{ mt: 2 }}>
-        <Button variant="outlined" onClick={drawVectorField}>Redraw</Button>
+        <Button variant="outlined" onClick={drawVectorField}>
+          Redraw
+        </Button>
       </Box>
     </Paper>
   );
 };
 
-export default VectorCalculator; 
+export default VectorCalculator;

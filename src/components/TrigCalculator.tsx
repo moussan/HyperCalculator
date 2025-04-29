@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Paper, TextField, Grid, Button, ToggleButtonGroup, ToggleButton, Tooltip, Typography, Box } from '@mui/material';
+import {
+  Paper,
+  TextField,
+  Grid,
+  Button,
+  ToggleButtonGroup,
+  ToggleButton,
+  Tooltip,
+  Typography,
+  Box,
+} from '@mui/material';
 import { create, all } from 'mathjs';
 
 const math = create(all);
@@ -37,13 +47,13 @@ const TrigCalculator: React.FC = () => {
           res = math.tan(rad);
           break;
         case 'asin':
-          res = fromRadians((math.asin(angleValue) as unknown as number));
+          res = fromRadians(math.asin(angleValue) as unknown as number);
           break;
         case 'acos':
-          res = fromRadians((math.acos(angleValue) as unknown as number));
+          res = fromRadians(math.acos(angleValue) as unknown as number);
           break;
         case 'atan':
-          res = fromRadians((math.atan(angleValue) as unknown as number));
+          res = fromRadians(math.atan(angleValue) as unknown as number);
           break;
         default:
           res = NaN;
@@ -56,7 +66,9 @@ const TrigCalculator: React.FC = () => {
 
   return (
     <Paper elevation={2} sx={{ p: 2, maxWidth: 400, mx: 'auto' }}>
-      <Typography variant="h6" gutterBottom>Trigonometry Calculator</Typography>
+      <Typography variant="h6" gutterBottom>
+        Trigonometry Calculator
+      </Typography>
       <TextField
         fullWidth
         label="Angle / Value"
@@ -65,7 +77,12 @@ const TrigCalculator: React.FC = () => {
         sx={{ mb: 2 }}
       />
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-        <ToggleButtonGroup value={unit} exclusive onChange={(_, val) => val && setUnit(val)} size="small">
+        <ToggleButtonGroup
+          value={unit}
+          exclusive
+          onChange={(_, val) => val && setUnit(val)}
+          size="small"
+        >
           <ToggleButton value="deg">Degrees</ToggleButton>
           <ToggleButton value="rad">Radians</ToggleButton>
         </ToggleButtonGroup>
@@ -91,4 +108,4 @@ const TrigCalculator: React.FC = () => {
   );
 };
 
-export default TrigCalculator; 
+export default TrigCalculator;

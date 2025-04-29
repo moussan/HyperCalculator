@@ -38,4 +38,4 @@ const CalculatorTabs: React.FC = () => {
   );
 };
 
-export default CalculatorTabs; 
+export default CalculatorTabs;

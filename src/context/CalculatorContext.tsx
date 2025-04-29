@@ -18,4 +18,4 @@ export const CalculatorProvider: React.FC<PropsWithChildren> = ({ children }) =>
       {children}
     </CalculatorContext.Provider>
   );
-}; 
+};

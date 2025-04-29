@@ -34,4 +34,4 @@ export const themes = {
       background: { default: '#f1faee', paper: '#fffffc' },
     },
   }),
-}; 
+};

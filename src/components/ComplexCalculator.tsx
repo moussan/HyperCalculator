@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Paper, Grid, TextField, Select, MenuItem, Button, Typography, Box, FormControl, InputLabel } from '@mui/material';
+import {
+  Paper,
+  Grid,
+  TextField,
+  Select,
+  MenuItem,
+  Button,
+  Typography,
+  Box,
+  FormControl,
+  InputLabel,
+} from '@mui/material';
 import { create, all } from 'mathjs';
 
 const math = create(all);
@@ -9,7 +20,9 @@ const ComplexCalculator: React.FC = () => {
   const [imagA, setImagA] = useState('');
   const [realB, setRealB] = useState('');
   const [imagB, setImagB] = useState('');
-  const [operation, setOperation] = useState<'add' | 'subtract' | 'multiply' | 'divide' | 'conjugate' | 'magnitude' | 'phase'>('add');
+  const [operation, setOperation] = useState<
+    'add' | 'subtract' | 'multiply' | 'divide' | 'conjugate' | 'magnitude' | 'phase'
+  >('add');
   const [result, setResult] = useState('');
 
   const calculate = () => {
@@ -53,28 +66,54 @@ const ComplexCalculator: React.FC = () => {
 
   return (
     <Paper elevation={2} sx={{ p: 2, maxWidth: 500, mx: 'auto' }}>
-      <Typography variant="h6" gutterBottom>Complex Number Calculator</Typography>
+      <Typography variant="h6" gutterBottom>
+        Complex Number Calculator
+      </Typography>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <TextField label="Real A" value={realA} onChange={e => setRealA(e.target.value)} fullWidth />
+          <TextField
+            label="Real A"
+            value={realA}
+            onChange={(e) => setRealA(e.target.value)}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={6}>
-          <TextField label="Imag A" value={imagA} onChange={e => setImagA(e.target.value)} fullWidth />
+          <TextField
+            label="Imag A"
+            value={imagA}
+            onChange={(e) => setImagA(e.target.value)}
+            fullWidth
+          />
         </Grid>
         {!(operation === 'conjugate' || operation === 'magnitude' || operation === 'phase') && (
           <>
             <Grid item xs={6}>
-              <TextField label="Real B" value={realB} onChange={e => setRealB(e.target.value)} fullWidth />
+              <TextField
+                label="Real B"
+                value={realB}
+                onChange={(e) => setRealB(e.target.value)}
+                fullWidth
+              />
             </Grid>
             <Grid item xs={6}>
-              <TextField label="Imag B" value={imagB} onChange={e => setImagB(e.target.value)} fullWidth />
+              <TextField
+                label="Imag B"
+                value={imagB}
+                onChange={(e) => setImagB(e.target.value)}
+                fullWidth
+              />
             </Grid>
           </>
         )}
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
             <InputLabel>Operation</InputLabel>
-            <Select value={operation} label="Operation" onChange={e => setOperation(e.target.value as any)}>
+            <Select
+              value={operation}
+              label="Operation"
+              onChange={(e) => setOperation(e.target.value as any)}
+            >
               <MenuItem value="add">Add</MenuItem>
               <MenuItem value="subtract">Subtract</MenuItem>
               <MenuItem value="multiply">Multiply</MenuItem>
@@ -86,7 +125,9 @@ const ComplexCalculator: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Button variant="contained" fullWidth onClick={calculate}>Calculate</Button>
+          <Button variant="contained" fullWidth onClick={calculate}>
+            Calculate
+          </Button>
         </Grid>
       </Grid>
       {result && (
@@ -99,4 +140,4 @@ const ComplexCalculator: React.FC = () => {
   );
 };
 
-export default ComplexCalculator; 
+export default ComplexCalculator;
