@@ -1,0 +1,17 @@
+providers = ["node"]
+
+[variables]
+PORT = "3000"
+
+[phases.install]
+cmds = ["cd frontend && npm ci"]
+
+[phases.build]
+cmds = ["cd frontend && npm run build"]
+
+[phases.setup]
+cmds = ["npm install -g serve"]
+
+# We only need the static build directory at runtime
+[start]
+cmd = "npx serve -s frontend/build -l $PORT" 
