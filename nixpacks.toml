@@ -14,4 +14,4 @@ cmds = ["npm install -g serve"]
 
 # We only need the static build directory at runtime
 [start]
-cmd = "npx serve -s frontend/build -l $PORT" 
+cmd = "npx serve -s frontend/dist -l $PORT" 
