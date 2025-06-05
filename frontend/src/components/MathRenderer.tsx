@@ -1,6 +1,6 @@
 import React from 'react';
 import 'katex/dist/katex.min.css';
-import { InlineMath, BlockMath } from '@matejmazur/react-katex';
+import TeX from '@matejmazur/react-katex';
 
 interface Props {
   latex: string;
@@ -8,7 +8,7 @@ interface Props {
 }
 
 const MathRenderer: React.FC<Props> = ({ latex, block = false }) => (
-  block ? <BlockMath math={latex} /> : <InlineMath math={latex} />
+  <TeX math={latex} block={block} />
 );
 
 export default MathRenderer; 
